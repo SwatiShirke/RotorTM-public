@@ -1,36 +1,23 @@
 <?xml version="1.0"?>
-<package format="2">
-  <name>rotor_tm</name>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rotor_tm_sim</name>
   <version>0.0.0</version>
-  <description>The rotor_tm package</description>
+  <description>TODO: Package description</description>
+  <maintainer email="swatishirke.shirke88@gmail.com">swati</maintainer>
+  <license>Apache-2.0</license>
 
-  <!-- One maintainer tag required, multiple allowed, one person per tag -->
-  <!-- Example:  -->
-  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="lguanrui@nyu.edu">Guanrui Li</maintainer>
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  
 
-
-  <!-- One license tag required, multiple allowed, one license per tag -->
-  <!-- Commonly used license strings: -->
-  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
-
-
-  <!-- Url tags are optional, but multiple are allowed, one per tag -->
-  <!-- Optional attribute type can be: website, bugtracker, or repository -->
-  <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/system_launch</url> -->
-
-
-  <!-- Author tags are optional, multiple are allowed, one per tag -->
-  <!-- Authors do not have to be maintainers, but could be -->
-  <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
-
-
-  <buildtool_depend>catkin</buildtool_depend>
-
-  <build_depend>rospy</build_depend>
+  <depend>rotor_tm_config</depend>
+  <depend>rotor_tm_utils</depend>
+  <depend>rotor_tm_msgs</depend>
+  
+  <build_depend>rclpy</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>nav_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
@@ -39,8 +26,12 @@
   <build_depend>std_srvs</build_depend>
   <build_depend>quadrotor_msgs</build_depend>
 
-  <!-- Dependencies needed after this package is compiled. -->
-  <exec_depend>rospy</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <depend>python3-setuptools</depend>
+  <exec_depend>Optimization</exec_depend>
+  
+
+  <exec_depend>rclpy</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>std_msgs</exec_depend>
@@ -48,11 +39,10 @@
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>std_srvs</exec_depend>
   <exec_depend>quadrotor_msgs</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
 
-
-  <!-- The export tag contains other, unspecified, tags -->
+  
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
+    <build_type>ament_python</build_type>
   </export>
 </package>

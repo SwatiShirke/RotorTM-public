@@ -1,48 +1,57 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.8)
 project(rotor_tm_msgs)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  rospy
-  nav_msgs
-  sensor_msgs
-  geometry_msgs
-  std_msgs
-  message_generation)
-
-add_message_files(DIRECTORY msg
-  FILES
-  PositionCommand.msg
-  FMCommand.msg
-  RPMCommand.msg
-  SO3Command.msg
-  CenPL_Command.msg
-  StatusData.msg
-  TRPYCommand.msg)
-
-generate_messages(
-  DEPENDENCIES geometry_msgs std_msgs)
-
-catkin_package(
-  INCLUDE_DIRS 
-  LIBRARIES 
-  CATKIN_DEPENDS
-    rospy
-    nav_msgs
-    sensor_msgs
-    geometry_msgs
-    std_msgs
-    message_runtime)
-
-###########
-## Build ##
-###########
+# find dependencies
+#find_package(ament_cmake REQUIRED)
+# uncomment the following section in order to fill in
+# further dependencies manually.
+# find_package(<dependency> REQUIRED)
 
 
-## Mark cpp header files for installation
-install(DIRECTORY launch/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+find_package(rosidl_default_generators REQUIRED)
+
+find_package(ament_cmake REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/PositionCommand.msg"
+  "msg/FMCommand.msg"		
+  "msg/RPMCommand.msg"
+  "msg/SO3Command.msg"
+  "msg/CenPLCommand.msg"
+  "msg/StatusData.msg"
+  "msg/TRPYCommand.msg"
+  
+  "srv/Vec4.srv"
+  "srv/Circle.srv"
+  "srv/CircleWithRotation.srv"
+  "srv/Line.srv"
+  "srv/CoprStatusCmd.srv"
+  "srv/StepPose.srv"
+  
+  DEPENDENCIES geometry_msgs std_msgs nav_msgs sensor_msgs
+)
+
+
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()

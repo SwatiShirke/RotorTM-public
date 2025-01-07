@@ -10,4 +10,4 @@ max_rpm: 7500
 min_rpm: 1500
 motor_coefficients: 5.55e-8
 
-mesh_path: "package://rotor_tm/mesh/uav/hummingbird.mesh"
+mesh_path: "package://rotor_tm_sim/mesh/uav/hummingbird.mesh"
